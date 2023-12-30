@@ -13,23 +13,26 @@ alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 # asking for inputs and converting string to lower case as the alphabet is in lower case
 message = input("What message would you like to encode? ").lower()
-caesar_shift = int(input("What caesar shift value would you like to use? "))
+encode_offset = int(input("What caesar shift value would you like to use? "))
 
 
-def decode_caesar(coded_message, decode_shift):
+def encode_caesar(coded_message, encode_shift):
     ''' This function takes a message and shift value as an input and returns
     the decoded message
     '''
-    decoded_message = ""
+    encoded_message = ""
     for letter in coded_message:
+        # This part changes all the letters in the string by the shift amount and adds to encoded message string
         if letter in alphabet:
             position = alphabet.find(letter)
-            new_character = alphabet[(position + decode_shift) % 26]
-            decoded_message += new_character
+            new_character = alphabet[(position + encode_shift) % 26]
+            encoded_message += new_character
+
+        # This part leaves the spaces and other characters alone and adds them to encoded message string
         else:
             new_character = letter
-            decoded_message += new_character
-    return decoded_message
+            encoded_message += new_character
+    return encoded_message
 
 
-print(decode_caesar(message, caesar_shift))
+print(encode_caesar(message, encode_offset))
